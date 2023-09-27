@@ -16,6 +16,10 @@ class Car extends Model
         'manufacturer_id',
     ];
 
+    protected $with = [
+        'manufacturer'
+    ];
+
     /** Relationships */
     public function manufacturer(): BelongsTo
     {

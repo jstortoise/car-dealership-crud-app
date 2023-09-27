@@ -10,8 +10,12 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->get('manufacturer_id')) {
+            return Car::where('manufacturer_id', $request->get('manufacturer_id'))->get();
+        }
+
         return Car::all();
     }
 
