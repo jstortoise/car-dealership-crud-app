@@ -5,35 +5,34 @@
  */
 
 import './bootstrap';
+import '../css/app.css';
 import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
-/**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
- */
+import App from './components/App.vue';
+import ManufacturerList from './components/Manufacturer/List.vue';
+import Manufacturer from './components/Manufacturer/View.vue';
+import ManufacturerForm from './components/Manufacturer/Form.vue';
+import CarList from './components/Car/List.vue';
+import Car from './components/Car/View.vue';
+import CarForm from './components/Car/Form.vue';
 
-const app = createApp({});
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {path: '/manufacturers', component: ManufacturerList},
+        {path: '/manufacturers/:id', component: Manufacturer},
+        {path: '/manufacturers/:id/edit', component: ManufacturerForm},
+        {path: '/manufacturers/create', component: ManufacturerForm},
+        {path: '/cars', component: CarList},
+        {path: '/cars/:id', component: Car},
+        {path: '/cars/:id/edit', component: CarForm},
+        {path: '/cars/create', component: CarForm},
+    ],
+});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+const app = createApp(App);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
+app.use(router);
 
 app.mount('#app');
