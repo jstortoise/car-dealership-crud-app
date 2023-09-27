@@ -8,7 +8,7 @@
             <div class="flex items-center gap-5">
                 <label for="manufacturer_id">Manufacturer</label>
                 <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="manufacturer_id" id="manufacturer_id" v-on:change="filterCars">
-                    <option value=""></option>
+                    <option value="">All</option>
                     <option v-for="manufacturer in manufacturers" :value="manufacturer.id" :key="`manufacturer-${manufacturer.id}`">{{ manufacturer.name }}</option>
                 </select>
             </div>
